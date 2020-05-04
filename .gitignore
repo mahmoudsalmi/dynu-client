@@ -1,0 +1,6 @@
+old/
+.idea/
+*.iml
+dist/
+node_modules/
+coverage/

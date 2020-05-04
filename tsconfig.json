@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist/",
+    "removeComments": false,
+    "strict": true,
+    "noImplicitAny": false
+  },
+  "exclude": [
+    "test/**/*"
+  ]
+}
