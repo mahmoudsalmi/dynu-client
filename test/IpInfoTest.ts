@@ -1,4 +1,4 @@
-import IpInfo, {IpInfoData} from "../src/IpInfo";
+import IpInfo, {IpInfoData} from "../lib/IpInfo";
 import axios, {AxiosResponse} from "axios";
 import {mocked} from "ts-jest/utils";
 import {IP_INFO_DATA_RESPONSE} from "./mockData";

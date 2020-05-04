@@ -1,0 +1,6 @@
+.editorconfig
+.travis.yml
+jest*
+tsconfig.json
+node_modules/
+test/

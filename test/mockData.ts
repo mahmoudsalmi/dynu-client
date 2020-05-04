@@ -1,4 +1,4 @@
-import {IpInfoData} from "../src/IpInfo";
+import {IpInfoData} from "../lib/IpInfo";
 import {AxiosResponse} from "axios";
 
 export const IP_INFO_DATA_RESPONSE: AxiosResponse<IpInfoData> = {
