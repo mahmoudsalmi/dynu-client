@@ -1,12 +1,27 @@
 language: node_js
 node_js:
+- stable
 - 12
+before_script:
+  - npm run setup
+  - npm run build
+script:
+  - npm run test
+after_success:
+  - npm pack
 deploy:
-  provider: npm
-  email: mahmoud.salmi@msweb.net
-  api_key:
-    secure: eWkS6M6cV7n5ox26qg+l0KWuE5qsvwJiWQZ7gKxkxV8OYvIekNTIag96GLR0F+RpD5/AOHfN/UxznT/zWuuxnmWnCxK2x8+dc6ldSRnHZVMhRawXFq+rQ1KwUf1mRx4eU+vNC57ZapUyAUdUhAe1jiWhhlvQ0aPh4+bite5GMzOfVN2Xb2eTkqsH5xiK2hfT3F2EiFBgJ4VzYO/8fdogsh142b9RR9IWGs9ylQbILblYrgoWcvlD1agBL051MEzXCGdTzJMlifyNn4U2jcCMNUCeAIwmM1qKaBEYhu8MyIT1nXhW1eTCBiXgTkbyLqTMwkPyYgqMStiqJv4qCc15UIYq1jKiKn1LSSVk8fe30zgicheeNqiJPX1UVZKWByf7VqenKdG2uDIzUJoESy/QqQLXBUbqai7nPdtFi4R7uDlR0YXTWACM+cRz2C+7NKH49KsIor6s9xElTPQK2hTDRaN0GLpSHvbaJxjWFfUdxpTzgNf59LcwYGf15p3tkjwbKAw/3kUe5ApqIx/0W7Qj8SL/t38aJNAHFtkwNVxeEWfsH839+x1NYIh1sO4ZFgvkJ1JSCma7/c4JYB/i6PrcD+Uz1Meh2JmVQvg4nj7JH7T0ylrTz74wGYEEsVsYq10bnij2rjFTwoVYI/oRNpHzmnigtgWfV0HWj9nSfRXwTQs=
-  on:
-    tags: true
-    repo: mahmoudsalmi/dynu-ddns-updater
-  skip_cleanup: 'true'
+  - provider: releases
+    api_key:
+      secure: 5vork/qrg856sSGv2ku+Fn33RPReDFsYL2+NHlRGsgPo0yrFKOntfd1CbektqvZq+s2NPrPTBmGxCN3aAPtZtwC6u9I8CGoPeUISPNJ99vokjZxOii9YwUaFPFT9OpDWkz4dNMBWlNnterN7YekTZ5VAYsbpJxg0gegEj9jg67HG8i+DrgvhFWYiNfpR2iQXyrt80ULHRBLIRiAH969CFKtDSXT/lJgw/b/Py6tI0lqLUlFcPYUS6ToFg72ujD5/pAilR8Mb5XIV9uXfAF+zDw7JJzUyvv82tQvSEJZKYWOt9i2GiDZHqA4Qik4xOsmjAM4P2HZgSVrDkK8wlurpClsCQUUY4/4P74RiX5KQao7P1Dy3U8eHsLunSX78z571Zg/H4BvY62eTqCk2iuZqvihng+y8zZFj+D68G2CyI15yF6Em5+tQsWzkZYyOFfmqxChfoluPDRxJS1Cn0DMTUkHAL56905d3o8hiRS7EcWRJkoTsAWXTAXRblCzcjdZ7HR6lLnKAJ1NQ7LlaXZaacT6tpNXTa5DHa19Kq5Yj9LrxEQs6YbrwoJ2TcBgpcBEknN3jfzO+EyV4GvN0enqxfbWH2jGQC9YtRYPrYOHBoMq2+qPEsz3MqNC059qq6g2Y2U9LHfGP+QvIcHO2Iwp5jppRwhjoW1T5k+F4WrbZxt0=
+    file: mahmoudsalmi-dynu-ddns-updater-*.tgz
+    on:
+      repo: mahmoudsalmi/dynu-ddns-updater
+    skip_cleanup: 'true'
+  - provider: npm
+    email: mahmoud.salmi@msweb.net
+    api_key:
+      secure: Q9vbi46i72llfMrnhr+iE8jnZzKZotG9DfpJ5dKbNG7Roy90TFj1REMhylREQ9ThNe8egkZezHSciLQ0xN0smL+9D4qH4acx9oLR+TcMDsYYxDNHsuxXKn8VnqYZ0cBD8LlB0fZKX8qb+rCyxGdNkLanh9X6SbR/cg+T6fJnU/6frFjzKUg/7YYjzp1zGTfG2XyjvHtFvc0QnYo0uvZ/ZiOpIihjO+GOrvR3THxJjLy7mbkRSjDmo5MBmal0Mnx0T0bHx983bClKF2asxpD3qdasHinu9P2cijKn/QpLyhyuRJ30LM2eVHSp7yXP01y0qEP2QX69U4C4LRLKmf5giOTkRVxsyVtBcWNFJWGJ3NB0NUiVZzcjZDlHxcAFYLCcqaygN/f4mzTT/XO0LqyDkfoQhpQsMCjNkisHEbaDi47fygeaK/OR12wj7fr2jZd880SNEXEfvZCxBCJVixdGjygN8xnVfN11UECaB4z3kr/bkHSyecCErFMjvatDo0HrdKZ1+JQQJRW0hHRKWRfCirDl4lIykm7+Pg+43OmTXUFmUfJVKLUwF++hG4yna2b0BYPZ9FwGvLb7swyCWRY9GoFIZ+W4cibfJfwVJjnIq/hCp+pRKiiMdK3hoHNWP3oXV4rGiwD7dZr6N6nw5+02fF3Hb6cRMh7H0ALt82Pb+yw=
+    on:
+      tags: true
+      repo: mahmoudsalmi/dynu-ddns-updater
+    skip_cleanup: 'true'

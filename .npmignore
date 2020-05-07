@@ -4,6 +4,7 @@ test/
 coverage/
 node_modules/
 .editorconfig
-.travis.yml
+old.travis.yml
 jest*
 tsconfig.json
+mahmoudsalmi-dynu-ddns-updater-*.tgz

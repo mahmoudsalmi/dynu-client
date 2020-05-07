@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+- stable
+- '6'
+- '4'
+deploy:
+  provider: releases
+  api_key:
+    secure: LWgz1+iLpm/6406hpis64BHm23FPWlk94YOz1mYuzEnZlmH+6mKi4oVCoqhmBxEXQL+eIzNbRe+sDBL7zOU/OIwDFtNEct3EuL+TLPhXLH0kw7lj6yktd8UDLiTcVq/VwVen8cYp39r+4s5w+Ivo1ozBSYO+bkK4XEJGbJSIw1ZgfqHZpuGzgypQTjWPYQN9OtmEmY7RYoIbuO2KiIc/RiJYerEu1OIMcCL22+O1KVWAOw6bIRRoEw+FxgL8ZyR5tRIfkO1Oca8DnijbN2bsoCbkUXpAerdhK+CVxLCl6bdsZBpYxJDjJONWoexRLPNesaKcQSjbK8bMIgPKe5ZX+wcOkp+n8POeCrgu9ZJ0rj06mpf3pUF4KLlbcaUW4jI0p9SQFwqow+kGPzeS9DY3+eSUaaEZfVbFFCCQ/YMhCAntf5rmQfOsl8p9j4r42zSuwsJJILE94LiQP+xsPTzeqAvs+sT8HemmDpHzKWUjEFxOK9MOPYXHonRfQoKM3uSKwUc57i8B5NERb2Dt7+bN9lFhZXBtNDmdhXlZ5q4orB4GC1tmsjqVrAHZO9SNomYXOYevBpuzlMzpFGWjECleAPQF6xnsH/WSmspRdOXhHXr8rEKIOkGtREStj0gKoSz2RDzC0D+71qvrSAk8A5qWyJ7SRfoKrkjg9wRMvFMOHlA=
+  file: mahmoudsalmi-dynu-ddns-updater-*.tgz
+  on:
+    repo: mahmoudsalmi/dynu-ddns-updater
+  skip_cleanup: 'true'
