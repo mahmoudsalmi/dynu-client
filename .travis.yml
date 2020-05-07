@@ -16,6 +16,7 @@ deploy:
       secure: 5vork/qrg856sSGv2ku+Fn33RPReDFsYL2+NHlRGsgPo0yrFKOntfd1CbektqvZq+s2NPrPTBmGxCN3aAPtZtwC6u9I8CGoPeUISPNJ99vokjZxOii9YwUaFPFT9OpDWkz4dNMBWlNnterN7YekTZ5VAYsbpJxg0gegEj9jg67HG8i+DrgvhFWYiNfpR2iQXyrt80ULHRBLIRiAH969CFKtDSXT/lJgw/b/Py6tI0lqLUlFcPYUS6ToFg72ujD5/pAilR8Mb5XIV9uXfAF+zDw7JJzUyvv82tQvSEJZKYWOt9i2GiDZHqA4Qik4xOsmjAM4P2HZgSVrDkK8wlurpClsCQUUY4/4P74RiX5KQao7P1Dy3U8eHsLunSX78z571Zg/H4BvY62eTqCk2iuZqvihng+y8zZFj+D68G2CyI15yF6Em5+tQsWzkZYyOFfmqxChfoluPDRxJS1Cn0DMTUkHAL56905d3o8hiRS7EcWRJkoTsAWXTAXRblCzcjdZ7HR6lLnKAJ1NQ7LlaXZaacT6tpNXTa5DHa19Kq5Yj9LrxEQs6YbrwoJ2TcBgpcBEknN3jfzO+EyV4GvN0enqxfbWH2jGQC9YtRYPrYOHBoMq2+qPEsz3MqNC059qq6g2Y2U9LHfGP+QvIcHO2Iwp5jppRwhjoW1T5k+F4WrbZxt0=
     file: mahmoudsalmi-dynu-ddns-updater-*.tgz
     on:
+      tags: true
       repo: mahmoudsalmi/dynu-ddns-updater
     skip_cleanup: 'true'
   - provider: npm
