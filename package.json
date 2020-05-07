@@ -1,6 +1,6 @@
 {
   "name": "@mahmoudsalmi/dynu-ddns-updater",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "update dynu.com DDNS based on public IP given by ipinfo.io",
   "main": "dist/index.js",
   "type": "dist/index.d.js",
