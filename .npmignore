@@ -1,6 +1,5 @@
 .idea/
 *.iml
-dist/
 test/
 coverage/
 node_modules/
