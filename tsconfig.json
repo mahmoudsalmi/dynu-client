@@ -7,10 +7,12 @@
     "outDir": "./dist/",
     "removeComments": false,
     "strict": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "resolveJsonModule": true
   },
   "exclude": [
     "test/**/*",
-    "dist/**/*"
+    "dist/**/*",
+    "package.json"
   ]
 }

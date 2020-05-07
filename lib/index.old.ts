@@ -83,7 +83,7 @@ var updateDDNSOpts = {
         hostname: 'msddns.dynu.com',
         myip: result.myIP,
         username: 'mahmoudsalmi',
-        password: 'ebc6b9e0a0a729150e3a482bf6121da7'
+        password: '------'
     },
     headers: {}
 };

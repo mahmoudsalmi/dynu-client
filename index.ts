@@ -1,3 +1,1 @@
-import DynuDDNSUpdater from "./lib/DynuDDNSUpdater";
-
-export default DynuDDNSUpdater;
+export * from "./lib/DynuDDNSUpdater";
