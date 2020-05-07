@@ -12,7 +12,6 @@
   },
   "exclude": [
     "test/**/*",
-    "dist/**/*",
-    "package.json"
+    "dist/**/*"
   ]
 }
