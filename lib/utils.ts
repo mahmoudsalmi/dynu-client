@@ -1,6 +1,11 @@
 const chalk = require('chalk');
+import CryptoJS = require("crypto-js");
 
-export default class Logger {
+export function md5(txt) {
+  return require("crypto-js/md5")(txt).toString(CryptoJS.enc.Hex);
+}
+
+export class Logger {
   static log(msg) {
     console.log(msg);
   }

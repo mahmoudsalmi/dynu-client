@@ -1,8 +1,8 @@
 import AppConfig, {appName, version} from "./AppConfig";
 
 import DynuDDNSUpdater from "./DynuDDNSUpdater";
-import Logger from "./Logger";
 
+import {Logger} from "./utils";
 import {program} from "commander";
 
 export function execute(args) {
@@ -36,8 +36,25 @@ export function execute(args) {
     .command('dynu')
     .alias('d')
     .description('update dynu ddns ip')
-    .action(() => {
-      Logger.warn("Not implemented !")
+    .action(async () => {
+      let appConfig = new AppConfig();
+      if (!appConfig.valid) {
+        await appConfig.editConfig();
+      }
+      new DynuDDNSUpdater()
+        .updateDDNSIp()
+        .then(
+          res => {
+            if (res.details.code === "ok")
+              Logger.done("the IP of your DDNS is up to date.");
+            if (res.details.code === "warning")
+              Logger.warn("the IP of your DDNS is up to date.");
+            if (res.details.code === "error" || res.details.code === "inputError" || res.details.code === "unknown" )
+              Logger.error("the IP of your DDNS is up to date.");
+
+            Logger.log(res);
+          }
+        );
     });
 
   // 03 - public-ip command

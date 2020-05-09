@@ -1,18 +1,27 @@
-import Logger from "./Logger";
-import CryptoJS = require("crypto-js");
-import * as inquirer from "inquirer";
+// global config value
+import {version, name as longAppName} from "../package.json";
 
-export {version} from "../package.json";
-export const appName = 'dynu-ddns-updater';
-export const md5 = txt => require("crypto-js/md5")("mamoud2009").toString(CryptoJS.enc.Hex);
+const appName = longAppName.replace('@mahmoudsalmi/', '');
+export {version, appName};
 
-const defaultConfig = {
-  dynu: {
-    hostname: "",
-    username: "",
-    password: "",
-  }
+export interface AppConfigData {
+  hostname: string;
+  username: string;
+  password: string;
 }
+
+export interface AppConfigOpts {
+  passwordHashed: boolean;
+}
+
+const defaultConfig: AppConfigData = {
+  hostname: "",
+  username: "",
+  password: ""
+}
+
+import {Logger, md5} from "./utils";
+import * as inquirer from "inquirer";
 
 export default class AppConfig {
   private config;
@@ -21,11 +30,26 @@ export default class AppConfig {
     this.config = new (require('configstore'))(appName, defaultConfig, {globalConfigPath: true});
   }
 
-  async editConfig(): Promise<void> {
-    const username = this.username;
-    const password = this.password;
-    const hostname = this.hostname;
+  getConfig() {
+    return {
+      username: this.username,
+      password: this.password,
+      hostname: this.hostname
+    };
+  }
 
+  updateConfig(appConfig: AppConfigData, opts: AppConfigOpts = {passwordHashed: true}): void {
+    if (AppConfig.isConfigValid(appConfig)) {
+      this.username = appConfig.username;
+      this.password = opts.passwordHashed ? appConfig.password : md5(appConfig.password);
+      this.hostname = appConfig.hostname;
+    } else {
+      throw `the input appConfig is not valid : ${appConfig}`
+    }
+  }
+
+  async editConfig(): Promise<void> {
+    const {username, password, hostname} = this;
     const answers = await inquirer.prompt([
       {
         name: 'username',
@@ -58,41 +82,46 @@ export default class AppConfig {
         }
       }
     ]);
-
-    this.username = answers.username;
-    this.password = answers.password;
-    this.hostname = answers.hostname;
+    Object.assign(this, answers);
   }
 
   log(): void {
     Logger.log(this.config.all);
   }
 
+  static isConfigValid(appConfigOpts: AppConfigData): boolean {
+    return Boolean(appConfigOpts.hostname && appConfigOpts.username && appConfigOpts.password);
+  }
+
   get valid(): boolean {
-    return Boolean(this.hostname && this.username && this.password);
+    return AppConfig.isConfigValid(this.getConfig());
+  }
+
+  get notValid(): boolean {
+    return !this.valid;
   }
 
   get hostname(): string {
-    return this.config.get('dynu.hostname')
+    return this.config.get('hostname')
   }
 
   set hostname(hostname: string) {
-    this.config.set('dynu.hostname', hostname);
+    this.config.set('hostname', hostname);
   }
 
   get username(): string {
-    return this.config.get('dynu.username');
+    return this.config.get('username');
   }
 
   set username(username: string) {
-    this.config.set('dynu.username', username);
+    this.config.set('username', username);
   }
 
   get password(): string {
-    return this.config.get('dynu.password');
+    return this.config.get('password');
   }
 
   set password(password: string) {
-    this.config.set('dynu.password', md5(password));
+    this.config.set('password', md5(password));
   }
 }
